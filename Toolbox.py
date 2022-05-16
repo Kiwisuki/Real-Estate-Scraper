@@ -207,7 +207,7 @@ def prepoc_row(row):
     return new
 
 def get_ids():
-    with MongoClient('mongodb+srv://Kiwisuki:PaLMe321@real-estate.aaszr.mongodb.net/?retryWrites=true&w=majority') as cluster:
+    with MongoClient('mongodb+srv://USERNAME:PASSWORD@real-estate.aaszr.mongodb.net/?retryWrites=true&w=majority') as cluster:
         db = cluster['Real-Estate']
         collection = db['Aruodas']
         return [x['id'] for x in collection.find({}, {'id':1, '_id':0})]
@@ -216,7 +216,7 @@ def scrape_ad(link, nt):
     txt = get_html(link)
     row = parse_ad(txt, nt)
     row = prepoc_row(row)
-    with MongoClient('mongodb+srv://Kiwisuki:PaLMe321@real-estate.aaszr.mongodb.net/?retryWrites=true&w=majority') as cluster:
+    with MongoClient('mongodb+srv://USERNAME:PASSWORD@real-estate.aaszr.mongodb.net/?retryWrites=true&w=majority') as cluster:
         db = cluster['Real-Estate']
         collection = db['Aruodas']
         collection.insert_one(row)
